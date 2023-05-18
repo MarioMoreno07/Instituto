@@ -4,11 +4,18 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
+/**
+ * 
+ * @author mario
+ *
+ */
 public class Modelo2 {
 
 	private TreeMap<Localidad, HashSet<Vuelo>> conexiones;
 	private TreeSet<LineaAerea> lineas;
+	/**
+	 * 
+	 */
 
 	public Modelo2() {
 		this.conexiones = new TreeMap<Localidad, HashSet<Vuelo>>();
@@ -18,24 +25,32 @@ public class Modelo2 {
 	public void addLinea(LineaAerea linea) {
 		this.lineas.add(linea);
 	}
-
+/**
+ * Anade una localidad
+ * @param localidad
+ */
 	public void addLocalidad(Localidad localidad) {
-		// añade al mapa de conexiones una nueva pareja con la localidad
-		// pasada como parámetro y un nuevo conjunto de vuelos vacío
+
 		conexiones.put(localidad, new HashSet<Vuelo>());
 
 	}
-
+/**
+ *  Anade un vuelo a la localidad
+ * @param localidad
+ * @param vuelo
+ */
 	public void addVueloALocalidad(Localidad localidad, Vuelo vuelo) {
 		if (conexiones.get(localidad) == (null)) {
 			this.addLocalidad(localidad);
 		}
 		conexiones.get(localidad).add(vuelo);
-		// añade el vuelo pasado como parámetro al conjunto de vuelos asociado a
-		// la localidad pasada como parámetro.
+		
 
 	}
-
+/**
+ * Busca si hay errores
+ * @return
+ */
 	public boolean hayErrores() {
 		boolean errores = false;
 
@@ -55,7 +70,11 @@ public class Modelo2 {
 		// si hay algún vuelo con la misma localidad de origen que de destino.
 
 	}
-
+	/**
+	 * Mira los vuelos a ciudades con mas de un millon de habitantes
+	 * @param loc
+	 * @return
+	 */
 	public int numVuelosALocsMillon(Localidad loc) {
 		int numMillon = 0;
 		HashSet<Vuelo> vuelos = conexiones.get(loc);
@@ -73,7 +92,11 @@ public class Modelo2 {
 		// pasada como parámetro y llegan a localidades con más de 1.000.000 habs.
 
 	}
-
+	/**
+	 * 
+	 * @param localidad
+	 * @return
+	 */
 	public TreeSet<LineaAerea> lineasHasta(Localidad localidad) {
 		
 		TreeSet<LineaAerea> lineasAereas=new TreeSet<>();
@@ -91,7 +114,11 @@ public class Modelo2 {
 		// devuelve un TreeSet con todas las líneas aéreas que tienen vuelos hacia
 		// la localidad pasada como parámetro
 	}
-
+	/**
+	 * 
+	 * @param localidad
+	 * @return
+	 */
 	public int totalAvionesDesde(Localidad localidad) {
 		int totalAviones=0;
 		HashSet<Vuelo> vuelos=conexiones.get(localidad);
